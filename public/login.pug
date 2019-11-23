@@ -1,0 +1,26 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport', content='width=device-width, initial-scale=1.0')
+  meta(http-equiv='X-UA-Compatible', content='ie=edge')
+  title Login
+  link(rel='stylesheet', type='text/css', href='./css/semantic.min.css')
+.ui.grid.container.centered(style='margin: 100px 0;')
+  .thirteen.wide.column
+    if error
+      div.ui.negative.message
+        div.header
+          | Wrong credentials.
+        p
+          | please check your username or password again.
+
+    form.ui.form(method='POST', action='/login')
+      .field
+        label Username
+        input(type='text', name='username', required='')
+      .field
+        label Password
+        input(type='password', name='password', required='')
+      button.positive.ui.button(type='submit') login
+script(src='https://code.jquery.com/jquery-3.1.1.min.js', integrity='sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=', crossorigin='anonymous')
+script(src='./js/semantic.min.js')
