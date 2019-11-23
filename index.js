@@ -117,6 +117,26 @@ app.post('/transfer', (req, res) => {
     return res.redirect('/login?error=true')
 })
 
+app.post('/transfer-deprecated', (req, res) => {
+    const { receiver, amount } = req.body
+    const { SESSION } = req.cookies
+
+   if (SESSION) {
+       const sessionIndex = findSessionIndex(SESSION)
+
+        if (isValidSession(sessionIndex)) {
+
+            const sender = USERS[sessionIndex].username
+
+            transfer(sender, receiver, amount)
+
+            return res.sendFile(`${STATIC_PATH}/success.html`);
+        }
+    }
+
+    return res.redirect('/login?error=true')
+})
+
 
 app.get('/login', (req, res) => {
     const options = {
