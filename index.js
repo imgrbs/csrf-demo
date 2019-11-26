@@ -114,7 +114,9 @@ app.post('/transfer', (req, res) => {
         }
     }
 
-    return res.redirect('/login?error=true')
+    return res.json({
+        error: 'Invalid session or token'
+    }, 403)
 })
 
 app.post('/transfer-deprecated', (req, res) => {
